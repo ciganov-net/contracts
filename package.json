@@ -1,0 +1,31 @@
+{
+  "name": "@ciganov/contracts",
+  "version": "1.0.0",
+  "description": "Protobuf definitions and generated ts types",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "generate": "protoc -I ./proto ./proto/*.proto --ts_proto_out=./src/gen --ts_proto_opt=nestJs=true,package=omit",
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "files": [
+    "proto",
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./gen/*": "./dist/gen/*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@nestjs/microservices": "^11.1.11",
+    "rxjs": "^7.8.2",
+    "ts-proto": "^2.10.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^5.9.3"
+  }
+}
