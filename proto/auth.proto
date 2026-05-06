@@ -2,9 +2,14 @@ syntax = "proto3";
 
 package auth.v1;
 
+import "google/protobuf/empty.proto";
+
 service AuthService {
   rpc SendOtp(SendOtpRequest) returns (SendOtpResponse);
   rpc VerifyOtp(VerifyOtpRequest) returns (VerifyOtpResponse);
+
+  rpc GetSessionByToken(GetSessionByTokenRequest) returns(GetSessionByTokenResponse);
+  rpc RefreshToken(RefreshTokenRequest) returns (google.protobuf.Empty);
 }
 
 message SendOtpRequest {
@@ -21,5 +26,23 @@ message VerifyOtpRequest {
 }
 
 message VerifyOtpResponse {
+  string token = 1;
+}
+
+message GetSessionByTokenRequest {
+  string token = 1;
+}
+
+message GetSessionByTokenResponse {
+  optional Session session = 1;
+}
+
+message Session {
+  string id = 1;
+  string token = 2;
+  string user_id = 3;
+}
+
+message RefreshTokenRequest {
   string token = 1;
 }
