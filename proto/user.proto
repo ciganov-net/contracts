@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package user.v1;
 
+import "google/protobuf/field_mask.proto";
+
 service UserService {
   rpc GetMe(GetMeRequest) returns (GetMeResponse);
 
@@ -28,6 +30,7 @@ message CreateUserResponse {
 
 message PatchUserRequest {
   User user = 1;
+  google.protobuf.FieldMask update_mask = 2;
 }
 
 message PatchUserResponse {
@@ -38,7 +41,8 @@ message User {
   string          id           = 1;
   optional string display_name = 2;
   optional string bio          = 3;
-  optional int32  success_rate = 4;
-  optional int32  lose_amount  = 5;
-  optional string avatar       = 6;
+  string          email        = 4;
+  optional int32  success_rate = 5;
+  optional int32  lose_amount  = 6;
+  optional string avatar       = 7;
 }
