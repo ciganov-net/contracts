@@ -5,12 +5,10 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "generate": "mkdir -p ./gen && protoc -I ./proto ./proto/*.proto --ts_proto_out=./gen --ts_proto_opt=nestJs=true,package=omit",
+    "generate": "mkdir -p ./lib/gen && protoc -I ./proto ./proto/*.proto --ts_proto_out=./lib/gen --ts_proto_opt=nestJs=true,package=omit",
     "build": "tsc -p tsconfig.build.json"
   },
   "files": [
-    "proto",
-    "gen",
     "dist"
   ],
   "publishConfig": {

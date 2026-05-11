@@ -25,11 +25,11 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build
-        run: yarn run build
-
       - name: Generate ts types
         run: yarn run generate
+
+      - name: Build
+        run: yarn run build
 
       - name: Publish package
         run: npm publish
