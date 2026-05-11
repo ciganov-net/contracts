@@ -5,8 +5,8 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "generate": "mkdir -p ./lib/gen && protoc -I ./proto ./proto/*.proto --ts_proto_out=./lib/gen --ts_proto_opt=nestJs=true,package=omit",
-    "build": "tsc -p tsconfig.build.json"
+    "generate": "mkdir -p ./lib/gen && protoc -I ./lib/proto/contracts ./lib/proto/contracts/*.proto --ts_proto_out=./lib/gen --ts_proto_opt=nestJs=true,package=omit",
+    "build": "tsc -p tsconfig.build.json && npx cpy 'lib/proto/**/*.proto' 'dist/proto' --parents"
   },
   "files": [
     "dist"
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@nestjs/microservices": "^11.1.11",
+    "cpy-cli": "^7.0.0",
     "rxjs": "^7.8.2",
     "ts-proto": "^2.10.1"
   },
