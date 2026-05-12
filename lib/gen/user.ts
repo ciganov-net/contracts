@@ -28,7 +28,6 @@ export interface CreateUserResponse {
 
 export interface PatchUserRequest {
   user: User | undefined;
-  updateMask: string[] | undefined;
 }
 
 export interface PatchUserResponse {
