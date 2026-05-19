@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package balance.v1;
+
+import "google/type/datetime.proto";
+
+service BalanceService {
+  rpc GetBalance(GetBalanceRequest) returns (GetBalanceResponse);
+  rpc GetUserTransactions(GetUserTransactionsRequest) returns (GetUserTransactionsResponse);
+  rpc AddTransaction(AddTransactionRequest) returns (AddTransactionResponse);
+}
+
+message GetBalanceRequest {
+  string userId = 1;
+}
+
+message GetBalanceResponse {
+  Balance balance = 1;
+}
+
+message GetUserTransactionsRequest {
+  string userId = 1;
+}
+
+message GetUserTransactionsResponse {
+  repeated Transaction transactions = 1;
+}
+
+message AddTransactionRequest {
+  TransactionType type    = 1;
+  float           amount  = 2;
+  optional string eventId = 3;
+}
+
+message AddTransactionResponse {
+  bool ok = 1;
+}
+
+message Transaction {
+  string               id         = 1;
+  TransactionType      type       = 2;
+  float                amount     = 3;
+  string               eventId    = 4;
+  google.type.DateTime created_at = 5;
+}
+
+message Balance {
+  string id             = 1;
+  string main_balance   = 2;
+  string bonus_balance  = 3;
+  string freeze_balance = 4;
+}
+
+enum TransactionType {
+  DEPOSIT    = 0;
+  WITHDRAW   = 1;
+  BET_FREEZE = 2;
+  BET_WIN    = 3;
+  BET_LOSE   = 4;
+  REFUND     = 5;
+  BONUS      = 6;
+}
