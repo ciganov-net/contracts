@@ -27,10 +27,11 @@ message GetUserTransactionsResponse {
 }
 
 message AddTransactionRequest {
-  TransactionType type    = 1;
-  float           amount  = 2;
-  optional string eventId = 3;
-  string          userId  = 4;
+  TransactionType type       = 1;
+  float           amount     = 2;
+  optional string eventId    = 3;
+  string          userId     = 4;
+  optional float  multiplier = 5;
 }
 
 message AddTransactionResponse {
