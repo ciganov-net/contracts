@@ -30,6 +30,7 @@ message AddTransactionRequest {
   TransactionType type    = 1;
   float           amount  = 2;
   optional string eventId = 3;
+  string          userId  = 4;
 }
 
 message AddTransactionResponse {
@@ -37,18 +38,18 @@ message AddTransactionResponse {
 }
 
 message Transaction {
-  string               id         = 1;
-  TransactionType      type       = 2;
-  float                amount     = 3;
-  string               eventId    = 4;
+  string                    id         = 1;
+  TransactionType           type       = 2;
+  float                     amount     = 3;
+  string                    eventId    = 4;
   google.protobuf.Timestamp created_at = 5;
 }
 
 message Balance {
   string id             = 1;
-  float main_balance   = 2;
-  float bonus_balance  = 3;
-  float freeze_balance = 4;
+  float  main_balance   = 2;
+  float  bonus_balance  = 3;
+  float  freeze_balance = 4;
 }
 
 enum TransactionType {
