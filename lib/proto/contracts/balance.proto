@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package balance.v1;
 
-import "google/type/datetime.proto";
+import "google/protobuf/timestamp.proto";
 
 service BalanceService {
   rpc GetBalance(GetBalanceRequest) returns (GetBalanceResponse);
@@ -41,7 +41,7 @@ message Transaction {
   TransactionType      type       = 2;
   float                amount     = 3;
   string               eventId    = 4;
-  google.type.DateTime created_at = 5;
+  google.protobuf.Timestamp created_at = 5;
 }
 
 message Balance {
