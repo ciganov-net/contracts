@@ -42,6 +42,8 @@ export interface AddTransactionRequest {
   type: TransactionType;
   amount: number;
   eventId?: string | undefined;
+  userId: string;
+  multiplier?: number | undefined;
 }
 
 export interface AddTransactionResponse {
@@ -58,9 +60,9 @@ export interface Transaction {
 
 export interface Balance {
   id: string;
-  mainBalance: string;
-  bonusBalance: string;
-  freezeBalance: string;
+  mainBalance: number;
+  bonusBalance: number;
+  freezeBalance: number;
 }
 
 export const BALANCE_V1_PACKAGE_NAME = "balance.v1";
