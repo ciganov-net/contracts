@@ -109,7 +109,7 @@ message ValidateOutcomeRequest {
 
 message ValidateOutcomeResponse {
   bool is_valid = 1;
-  string coefficient = 2;
+  float coefficient = 2;
   string event_id = 3;
   string event_name = 4;
   string outcome_name = 5;
