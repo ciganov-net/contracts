@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package bonus.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+service BonusService {
+  rpc ActivatePromoCode(ActivatePromoCodeRequest) returns (ActivatePromoCodeResponse);
+  rpc GetPromoCodes(google.protobuf.Empty) returns (GetPromoCodesResponse);
+  rpc CreatePromoCode(CreatePromoCodeRequest) returns (CreatePromoCodeResponse);
+}
+
+message ActivatePromoCodeRequest {
+  string userId = 1;
+  string code = 2;
+}
+
+message ActivatePromoCodeResponse {
+  bool ok = 1;
+}
+
+message GetPromoCodesResponse {
+  repeated PromoCode promocodes = 1;
+}
+
+message CreatePromoCodeRequest {
+  string code = 1;
+  int32 amount = 2;
+  PromoType type = 3;
+  optional string description = 4;
+  google.protobuf.Timestamp expiresAt = 5;
+  int32 activationCount = 6;
+}
+
+message CreatePromoCodeResponse {
+  bool ok = 1;
+}
+
+message PromoCode {
+  string id = 1;
+  string code = 2;
+  int32 amount = 3;
+  PromoType type = 4;
+  string description = 5;
+  int32 activationCount = 6;
+  google.protobuf.Timestamp expiresAt = 7;
+  bool isActive = 8;
+}
+
+
+enum PromoType {
+  FIXED = 0;
+  PERCENTAGE = 1;
+  FREE_BET = 2;
+}

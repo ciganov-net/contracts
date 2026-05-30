@@ -111,7 +111,7 @@ export interface ValidateOutcomeRequest {
 
 export interface ValidateOutcomeResponse {
   isValid: boolean;
-  coefficient: string;
+  coefficient: number;
   eventId: string;
   eventName: string;
   outcomeName: string;

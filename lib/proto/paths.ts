@@ -6,5 +6,6 @@ export const PROTO_PATHS = {
   USER: join(__dirname, './contracts/user.proto'),
   BALANCE: join(__dirname, './contracts/balance.proto'),
   ODD: join(__dirname, './contracts/odd.proto'),
-  BETTING: join(__dirname, './contracts/betting.proto')
+  BETTING: join(__dirname, './contracts/betting.proto'),
+  BONUS: join(__dirname, './contracts/bonus.proto')
 } as const
