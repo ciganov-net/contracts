@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package media.v1;
+
+service MediaService {
+    rpc UploadAvatar(UploadAvatarRequest) returns (UploadAvatarResponse);
+}
+
+message UploadAvatarRequest {
+    bytes file = 1;
+    string filename = 2;
+    string content_type = 3;
+}
+
+message UploadAvatarResponse {
+    string url = 1;
+}

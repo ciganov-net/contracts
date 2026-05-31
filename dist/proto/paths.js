@@ -5,5 +5,6 @@ const node_path_1 = require("node:path");
 exports.PROTO_PATHS = {
     AUTH: (0, node_path_1.join)(__dirname, './contracts/auth.proto'),
     ACCOUNT: (0, node_path_1.join)(__dirname, './contracts/account.proto'),
-    USER: (0, node_path_1.join)(__dirname, './contracts/user.proto')
+    USER: (0, node_path_1.join)(__dirname, './contracts/user.proto'),
+    BALANCE: (0, node_path_1.join)(__dirname, './contracts/balance.proto')
 };
