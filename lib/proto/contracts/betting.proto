@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package betting.v1;
+
+
+service BettingService {
+  rpc PlaceBet(PlaceBetRequest) returns (PlaceBetResponse);
+}
+
+message PlaceBetRequest {
+  string userId = 1;
+  string outcomeId = 2;
+  float amount = 3;
+  float coefficient = 4;
+}
+
+
+
+message PlaceBetResponse {
+  bool ok = 1;
+}

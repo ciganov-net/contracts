@@ -1,0 +1,153 @@
+syntax = "proto3";
+
+package odd.v1;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service OddService {
+  rpc CreateCategory(CreateCategoryRequest) returns (CreateCategoryResponse);
+  rpc GetCategory(GetCategoryRequest) returns (GetCategoryResponse);
+  rpc GetCategories(google.protobuf.Empty) returns (GetCategoriesResponse);
+  rpc CreateEvent(CreateEventRequest) returns (CreateEventResponse);
+  rpc GetEvent(GetEventRequest) returns (GetEventResponse);
+  rpc GetEventsByCategory(GetEventsByCategoryRequest) returns (GetEventsByCategoryResponse);
+  rpc SwitchEventLiveState(SwitchEventLiveStateRequest) returns (SwitchEventLiveStateResponse);
+  rpc CreateOutcome(CreateOutcomeRequest) returns (CreateOutcomeResponse);
+  rpc GetOutcomeByEvent(GetOutcomeByEventRequest) returns (GetOutcomeByEventResponse);
+  rpc ChangeCoefficient(ChangeCoefficientRequest) returns (ChangeCoefficientResponse);
+  rpc ValidateOutcome(ValidateOutcomeRequest) returns (ValidateOutcomeResponse);
+}
+
+message CreateCategoryRequest {
+  string name = 1;
+  string slug = 2;
+}
+
+message CreateCategoryResponse {
+  bool ok = 1;
+}
+
+message GetCategoryRequest {
+  string id = 1;
+}
+
+message GetCategoryResponse {
+  Category category = 1;
+}
+
+message GetCategoriesResponse {
+  repeated Category categories = 1;
+}
+
+message CreateEventRequest {
+  string name = 1;
+  EventStatus status = 2;
+  string category_id = 3;
+  google.protobuf.Timestamp start = 4;
+  google.protobuf.Timestamp end = 5;
+}
+
+message CreateEventResponse {
+  bool ok = 1;
+}
+
+message GetEventRequest {
+  string id = 1;
+}
+
+message GetEventResponse {
+  Event event = 1;
+}
+
+message GetEventsByCategoryRequest {
+  string category_id = 1;
+}
+
+message GetEventsByCategoryResponse {
+  repeated Event events = 1;
+}
+
+message SwitchEventLiveStateRequest {
+  string id = 1;
+}
+
+message SwitchEventLiveStateResponse {
+  bool ok = 1;
+}
+
+message GetOutcomeByEventRequest {
+  string event_id = 1;
+}
+
+message GetOutcomeByEventResponse {
+  repeated Outcome outcomes = 1;
+}
+
+message ChangeCoefficientRequest {
+  string outcome_id = 1;
+  float coefficient = 2;
+}
+
+message ChangeCoefficientResponse {
+  bool ok = 1;
+}
+
+message CreateOutcomeRequest {
+  string event_id = 1;
+  string name = 2;
+  float coefficient = 3;
+}
+
+message CreateOutcomeResponse {
+  bool ok = 1;
+}
+
+message ValidateOutcomeRequest {
+  string outcome_id = 1;
+}
+
+message ValidateOutcomeResponse {
+  bool is_valid = 1;
+  float coefficient = 2;
+  string event_id = 3;
+  string event_name = 4;
+  string outcome_name = 5;
+}
+
+
+
+
+message Category {
+  string id = 1;
+  string name = 2;
+  string slug = 3;
+  bool is_active = 4;
+}
+
+message Outcome {
+  string id = 1;
+  string event_id = 2;
+  string name = 3;
+  float coefficient = 4;
+  bool is_active = 5;
+}
+
+message Event {
+  string id = 1;
+  string name = 2;
+  EventStatus status = 3;
+  string category_id = 4;
+  google.protobuf.Timestamp start = 5;
+  google.protobuf.Timestamp end = 6;
+  bool is_live = 7;
+  repeated Outcome outcomes = 8;
+}
+
+enum EventStatus {
+  UPCOMING = 0;
+  LIVE = 1;
+  FINISHED = 2;
+  RESOLVED = 3;
+  CANCELLED = 4;
+}
