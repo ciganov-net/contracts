@@ -10,6 +10,8 @@ service AuthService {
 
   rpc GetSessionByToken(GetSessionByTokenRequest) returns(GetSessionByTokenResponse);
   rpc RefreshToken(RefreshTokenRequest) returns (google.protobuf.Empty);
+  rpc RevokeSession(RevokeSessionRequest) returns (google.protobuf.Empty);
+  rpc RevokeAllSessions(RevokeAllSessionsRequest) returns (google.protobuf.Empty);
 }
 
 message SendOtpRequest {
@@ -45,4 +47,12 @@ message Session {
 
 message RefreshTokenRequest {
   string token = 1;
+}
+
+message RevokeSessionRequest {
+  string token = 1;
+}
+
+message RevokeAllSessionsRequest {
+  string userId = 1;
 }
