@@ -17,6 +17,15 @@ service OddService {
   rpc GetOutcomeByEvent(GetOutcomeByEventRequest) returns (GetOutcomeByEventResponse);
   rpc ChangeCoefficient(ChangeCoefficientRequest) returns (ChangeCoefficientResponse);
   rpc ValidateOutcome(ValidateOutcomeRequest) returns (ValidateOutcomeResponse);
+  rpc GetRandomEvents(GetRandomEventsRequest) returns (GetRandomEventsResponse);
+}
+
+message GetRandomEventsRequest {
+  int32 randomCount = 1;
+}
+
+message GetRandomEventsResponse {
+  repeated Event events = 1;
 }
 
 message CreateCategoryRequest {
