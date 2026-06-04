@@ -8,6 +8,16 @@ service UserService {
   rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
 
   rpc PatchUser(PatchUserRequest) returns (PatchUserResponse);
+
+  rpc GetWorstPlayers(GetWorstPlayersRequest) returns (GetWorstPlayersResponse);
+}
+
+message GetWorstPlayersRequest {
+  int32 limit = 1;
+}
+
+message GetWorstPlayersResponse {
+  repeated User users = 1;
 }
 
 message GetMeRequest {
