@@ -132,6 +132,7 @@ message Category {
   string name = 2;
   string slug = 3;
   bool is_active = 4;
+  string description = 5;
 }
 
 message Outcome {
