@@ -69,5 +69,6 @@ enum TransactionType {
   BET_WIN    = 3;
   BET_LOSE   = 4;
   REFUND     = 5;
-  BONUS      = 6;
+  BET_BONUS  = 6;
+  ADD_BONUS  = 7;
 }
