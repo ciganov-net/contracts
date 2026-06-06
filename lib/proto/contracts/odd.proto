@@ -37,6 +37,7 @@ message CreateCategoryRequest {
   string name = 1;
   string slug = 2;
   string description = 3;
+  string image = 4;
 }
 
 message CreateCategoryResponse {
@@ -139,6 +140,7 @@ message Category {
   string slug = 3;
   bool is_active = 4;
   string description = 5;
+  string image = 6;
 }
 
 message Outcome {
