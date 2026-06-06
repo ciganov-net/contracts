@@ -11,6 +11,7 @@ service OddService {
   rpc GetCategories(google.protobuf.Empty) returns (GetCategoriesResponse);
   rpc CreateEvent(CreateEventRequest) returns (CreateEventResponse);
   rpc GetEvent(GetEventRequest) returns (GetEventResponse);
+  rpc GetEvents(google.protobuf.Empty) returns (GetEventsResponse);
   rpc GetEventsByCategory(GetEventsByCategoryRequest) returns (GetEventsByCategoryResponse);
   rpc SwitchEventLiveState(SwitchEventLiveStateRequest) returns (SwitchEventLiveStateResponse);
   rpc CreateOutcome(CreateOutcomeRequest) returns (CreateOutcomeResponse);
@@ -22,6 +23,10 @@ service OddService {
 
 message GetRandomEventsRequest {
   int32 randomCount = 1;
+}
+
+message GetEventsResponse {
+  repeated Event events = 1;
 }
 
 message GetRandomEventsResponse {
