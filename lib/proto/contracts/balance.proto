@@ -8,6 +8,15 @@ service BalanceService {
   rpc GetBalance(GetBalanceRequest) returns (GetBalanceResponse);
   rpc GetUserTransactions(GetUserTransactionsRequest) returns (GetUserTransactionsResponse);
   rpc AddTransaction(AddTransactionRequest) returns (AddTransactionResponse);
+  rpc CreateWallet(CreateWalletRequest) returns (CreateWalletResponse);
+}
+
+message CreateWalletRequest {
+  string userId = 1;
+}
+
+message CreateWalletResponse {
+  bool ok = 1;
 }
 
 message GetBalanceRequest {
