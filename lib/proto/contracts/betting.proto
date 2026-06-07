@@ -5,6 +5,15 @@ package betting.v1;
 
 service BettingService {
   rpc PlaceBet(PlaceBetRequest) returns (PlaceBetResponse);
+  rpc GetBetCountByEvent(GetBetCountByEventRequest) returns (GetBetCountByEventResponse);
+}
+
+message GetBetCountByEventRequest {
+  string event_id = 1;
+}
+
+message GetBetCountByEventResponse {
+  int32 count = 1;
 }
 
 message PlaceBetRequest {
