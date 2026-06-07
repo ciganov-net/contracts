@@ -11,7 +11,7 @@ service OddService {
   rpc GetCategories(google.protobuf.Empty) returns (GetCategoriesResponse);
   rpc CreateEvent(CreateEventRequest) returns (CreateEventResponse);
   rpc GetEvent(GetEventRequest) returns (GetEventResponse);
-  rpc GetEvents(google.protobuf.Empty) returns (GetEventsResponse);
+  rpc GetEvents(GetEventsRequest) returns (GetEventsResponse);
   rpc GetEventsByCategory(GetEventsByCategoryRequest) returns (GetEventsByCategoryResponse);
   rpc SwitchEventLiveState(SwitchEventLiveStateRequest) returns (SwitchEventLiveStateResponse);
   rpc CreateOutcome(CreateOutcomeRequest) returns (CreateOutcomeResponse);
@@ -19,6 +19,27 @@ service OddService {
   rpc ChangeCoefficient(ChangeCoefficientRequest) returns (ChangeCoefficientResponse);
   rpc ValidateOutcome(ValidateOutcomeRequest) returns (ValidateOutcomeResponse);
   rpc GetRandomEvents(GetRandomEventsRequest) returns (GetRandomEventsResponse);
+}
+
+message GetEventsRequest {
+  optional string search = 1;
+  optional int32  take   = 2;
+  optional int32  skip   = 3;
+  enum SortBy {
+    POPULAR      = 0;
+    NEWEST       = 1;
+    CLOSING_SOON = 2;
+    MORE_BETS    = 3;
+  }
+  optional SortBy order_by = 4;
+  enum SortOrder {
+    DESC = 0;
+    ASC  = 1;
+  }
+  optional SortOrder sort_order      = 5;
+  optional float     min_coefficient = 6;
+  optional float     max_coefficient = 7;
+  repeated string    outcome_types   = 8;
 }
 
 message GetRandomEventsRequest {
@@ -34,10 +55,10 @@ message GetRandomEventsResponse {
 }
 
 message CreateCategoryRequest {
-  string name = 1;
-  string slug = 2;
+  string name        = 1;
+  string slug        = 2;
   string description = 3;
-  string image = 4;
+  string image       = 4;
   string badge_color = 5;
 }
 
@@ -58,11 +79,11 @@ message GetCategoriesResponse {
 }
 
 message CreateEventRequest {
-  string name = 1;
-  EventStatus status = 2;
-  string category_id = 3;
-  google.protobuf.Timestamp start = 4;
-  google.protobuf.Timestamp end = 5;
+  string                    name        = 1;
+  EventStatus               status      = 2;
+  string                    category_id = 3;
+  google.protobuf.Timestamp start       = 4;
+  google.protobuf.Timestamp end         = 5;
 }
 
 message CreateEventResponse {
@@ -102,8 +123,8 @@ message GetOutcomeByEventResponse {
 }
 
 message ChangeCoefficientRequest {
-  string outcome_id = 1;
-  float coefficient = 2;
+  string outcome_id  = 1;
+  float  coefficient = 2;
 }
 
 message ChangeCoefficientResponse {
@@ -111,9 +132,9 @@ message ChangeCoefficientResponse {
 }
 
 message CreateOutcomeRequest {
-  string event_id = 1;
-  string name = 2;
-  float coefficient = 3;
+  string event_id    = 1;
+  string name        = 2;
+  float  coefficient = 3;
 }
 
 message CreateOutcomeResponse {
@@ -125,51 +146,48 @@ message ValidateOutcomeRequest {
 }
 
 message ValidateOutcomeResponse {
-  bool is_valid = 1;
-  float coefficient = 2;
-  string event_id = 3;
-  string event_name = 4;
+  bool   is_valid     = 1;
+  float  coefficient  = 2;
+  string event_id     = 3;
+  string event_name   = 4;
   string outcome_name = 5;
 }
 
-
-
-
 message Category {
-  string id = 1;
-  string name = 2;
-  string slug = 3;
-  bool is_active = 4;
+  string id          = 1;
+  string name        = 2;
+  string slug        = 3;
+  bool   is_active   = 4;
   string description = 5;
-  string image = 6;
-    string badge_color = 7;
+  string image       = 6;
+  string badge_color = 7;
 }
 
 message Outcome {
-  string id = 1;
-  string event_id = 2;
-  string name = 3;
-  float coefficient = 4;
-  bool is_active = 5;
+  string id          = 1;
+  string event_id    = 2;
+  string name        = 3;
+  float  coefficient = 4;
+  bool   is_active   = 5;
 }
 
 message Event {
-  string id = 1;
-  string name = 2;
-  EventStatus status = 3;
-  string category_id = 4;
-  google.protobuf.Timestamp start = 5;
-  google.protobuf.Timestamp end = 6;
-  bool is_live = 7;
-  repeated Outcome outcomes = 8;
-  string category_title = 9;
-  string badge_color = 10;
+  string                    id             = 1;
+  string                    name           = 2;
+  EventStatus               status         = 3;
+  string                    category_id    = 4;
+  google.protobuf.Timestamp start          = 5;
+  google.protobuf.Timestamp end            = 6;
+  bool                      is_live        = 7;
+  repeated Outcome          outcomes       = 8;
+  string                    category_title = 9;
+  string                    badge_color    = 10;
 }
 
 enum EventStatus {
-  UPCOMING = 0;
-  LIVE = 1;
-  FINISHED = 2;
-  RESOLVED = 3;
+  UPCOMING  = 0;
+  LIVE      = 1;
+  FINISHED  = 2;
+  RESOLVED  = 3;
   CANCELLED = 4;
 }
