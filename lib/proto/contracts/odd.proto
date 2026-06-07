@@ -38,6 +38,7 @@ message CreateCategoryRequest {
   string slug = 2;
   string description = 3;
   string image = 4;
+  string badge_color = 5;
 }
 
 message CreateCategoryResponse {
@@ -141,6 +142,7 @@ message Category {
   bool is_active = 4;
   string description = 5;
   string image = 6;
+    string badge_color = 7;
 }
 
 message Outcome {
@@ -160,6 +162,8 @@ message Event {
   google.protobuf.Timestamp end = 6;
   bool is_live = 7;
   repeated Outcome outcomes = 8;
+  string category_title = 9;
+  string badge_color = 10;
 }
 
 enum EventStatus {
